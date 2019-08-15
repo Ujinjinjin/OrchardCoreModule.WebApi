@@ -1,48 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
+using OrchardCore.Environment.Shell.Configuration;
+using OrchardCore.Modules;
 
 namespace OrchardCore.WebApi
 {
-	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
+    public class Startup : StartupBase
+    {
+        private readonly IShellConfiguration _configuration;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-		public IConfiguration Configuration { get; }
+        public Startup(IShellConfiguration configuration,
+            IHostingEnvironment hostingEnvironment)
+        {
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
+        }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-		}
+        public override void ConfigureServices(IServiceCollection services)
+        {
+            
+        }
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
-			else
-			{
-				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-				app.UseHsts();
-			}
+        public override void Configure(IApplicationBuilder app, IRouteBuilder routes, IServiceProvider serviceProvider)
+        {
+            var exposeExceptions = _configuration.GetValue(
+                $"OrchardCore.Apis.WebApi:{nameof(WebApiSettings.ExposeExceptions)}",
+                _hostingEnvironment.IsDevelopment());
 
-			app.UseHttpsRedirection();
-			app.UseMvc();
-		}
-	}
+//            app.UseMiddleware<WebApiMiddleware>();
+        }
+    }
 }
