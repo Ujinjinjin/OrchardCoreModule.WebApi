@@ -3,17 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OrchardCore.WebApi.Controllers
 {
-    [Route("admin/webapi")]
     public class AdminController : Controller
     {
-        [HttpGet]
+        [HttpGet, Route("admin/webapi")]
         public IActionResult Index()
         {
             return View();
         }
         
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        [HttpGet, Route("api/getsomething")]
+        public ActionResult<IEnumerable<string>> GetSomething()
         {
             return new string[] {"value1", "value2"};
         }
