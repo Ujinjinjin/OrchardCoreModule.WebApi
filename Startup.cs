@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OrchardCore.Environment.Shell.Configuration;
 using OrchardCore.Modules;
+using OrchardCore.Navigation;
+using OrchardCore.Security.Permissions;
 
 namespace OrchardCore.WebApi
 {
@@ -23,13 +25,14 @@ namespace OrchardCore.WebApi
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddScoped<IPermissionProvider, Permissions>();
+            services.AddTransient<INavigationProvider, AdminMenu>();
         }
 
         public override void Configure(IApplicationBuilder app, IRouteBuilder routes, IServiceProvider serviceProvider)
         {
             var exposeExceptions = _configuration.GetValue(
-                $"OrchardCore.Apis.WebApi:{nameof(WebApiSettings.ExposeExceptions)}",
+                $"OrchardCore.WebApi:{nameof(WebApiSettings.ExposeExceptions)}",
                 _hostingEnvironment.IsDevelopment());
 
 //            app.UseMiddleware<WebApiMiddleware>();
