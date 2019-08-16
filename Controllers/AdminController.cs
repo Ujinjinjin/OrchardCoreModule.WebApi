@@ -1,16 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OrchardCore.WebApi.Controllers
 {
-    public class HomeController : Controller
+    [AllowAnonymous]
+    public class AdminController : Controller
     {
-        [Route("api/index")]
+        [Route("api/admin/index")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("api/test")]
+        [Route("api/admin/test")]
         public IActionResult Test()
         {
             return Ok("Test");
