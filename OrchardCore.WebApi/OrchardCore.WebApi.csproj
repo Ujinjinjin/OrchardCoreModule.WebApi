@@ -18,7 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services" />
+    <ProjectReference Include="..\OrchardCore.WebApi.Interface\OrchardCore.WebApi.Interface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <RazorGenerate Remove="Views\Admin\Index.cshtml" />
   </ItemGroup>
 
 </Project>

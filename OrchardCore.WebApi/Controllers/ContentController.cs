@@ -9,7 +9,7 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Records;
 using OrchardCore.Queries;
 using OrchardCore.Queries.Sql;
-using OrchardCore.WebApi.Models;
+using OrchardCore.WebApi.Interface;
 
 namespace OrchardCore.WebApi.Controllers
 {
