@@ -1,4 +1,0 @@
-Category: Api
-Name: WebApi
-Author: The SmartMed Team
-Description: Apis using no specifications (yet)
