@@ -14,4 +14,8 @@
     <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-beta3-71077" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Module.txt" />
+  </ItemGroup>
+
 </Project>
