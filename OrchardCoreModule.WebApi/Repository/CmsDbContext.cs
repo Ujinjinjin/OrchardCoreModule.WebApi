@@ -1,6 +1,6 @@
 namespace OrchardCoreModule.WebApi.Repository
 {
-    public class CmsDbContext : ICmsDbContext
+    internal class CmsDbContext : ICmsDbContext
     {
         
     }
