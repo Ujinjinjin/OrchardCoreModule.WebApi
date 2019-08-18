@@ -9,9 +9,9 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Records;
 using OrchardCore.Queries;
 using OrchardCore.Queries.Sql;
-using OrchardCore.WebApi.Interface;
+using OrchardCoreModule.WebApi.Abstractions;
 
-namespace OrchardCore.WebApi.Controllers
+namespace OrchardCoreModule.WebApi.Controllers
 {
     [AllowAnonymous]
     public class ContentController : Controller

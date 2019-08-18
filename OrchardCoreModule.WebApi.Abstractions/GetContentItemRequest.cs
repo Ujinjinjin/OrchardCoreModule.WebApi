@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace OrchardCore.WebApi.Interface
+namespace OrchardCoreModule.WebApi.Abstractions
 {
     [DataContract]
     public class GetContentItemRequest

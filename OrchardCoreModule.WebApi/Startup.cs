@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using OrchardCore.Environment.Shell.Configuration;
 using OrchardCore.Modules;
 
-namespace OrchardCore.WebApi
+namespace OrchardCoreModule.WebApi
 {
     public class Startup : StartupBase
     {

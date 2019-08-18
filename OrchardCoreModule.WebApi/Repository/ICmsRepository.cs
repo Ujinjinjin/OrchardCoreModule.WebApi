@@ -1,4 +1,4 @@
-namespace OrchardCore.WebApi.Repository
+namespace OrchardCoreModule.WebApi.Repository
 {
     public interface ICmsRepository
     {

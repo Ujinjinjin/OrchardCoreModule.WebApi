@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>OrchardCoreModule.WebApi</RootNamespace>
+    
+    <PackageId>OrchardCoreModule.WebApi</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>ujinjinjin</Authors>
+    <Company>None</Company>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,11 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OrchardCore.WebApi.Interface\OrchardCore.WebApi.Interface.csproj" />
+    <RazorGenerate Remove="Views\Admin\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <RazorGenerate Remove="Views\Admin\Index.cshtml" />
+    <ProjectReference Include="..\OrchardCoreModule.WebApi.Abstractions\OrchardCoreModule.WebApi.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

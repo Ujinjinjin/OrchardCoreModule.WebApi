@@ -1,4 +1,4 @@
-namespace OrchardCore.WebApi.Repository.DbClasses
+namespace OrchardCoreModule.WebApi.Repository.DbClasses
 {
     internal class DbContentItemIndex
     {

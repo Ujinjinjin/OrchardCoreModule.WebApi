@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCore.WebApi", "OrchardCore.WebApi\OrchardCore.WebApi.csproj", "{EA562340-71BB-4A79-ACDF-F527B0195FC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCoreModule.WebApi", "OrchardCoreModule.WebApi\OrchardCoreModule.WebApi.csproj", "{EA562340-71BB-4A79-ACDF-F527B0195FC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCore.WebApi.Interface", "OrchardCore.WebApi.Interface\OrchardCore.WebApi.Interface.csproj", "{8AE3886F-DF86-4EDB-B076-5D89B53BF2F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCoreModule.WebApi.Abstractions", "OrchardCoreModule.WebApi.Abstractions\OrchardCoreModule.WebApi.Abstractions.csproj", "{8AE3886F-DF86-4EDB-B076-5D89B53BF2F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
