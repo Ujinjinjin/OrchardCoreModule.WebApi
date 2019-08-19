@@ -35,22 +35,22 @@ namespace OrchardCoreModule.WebApi.Controllers
         public async Task<ContentItemIndex[]> GetContentItemList(GetContentItemListRequest request)
         {
             var queryTemplate = "select" +
-                                "    Orchard_ContentItemIndex.Id," +
-                                "    Orchard_ContentItemIndex.ContentItemId," +
-                                "    Orchard_ContentItemIndex.Latest," +
-                                "    Orchard_ContentItemIndex.Published," +
-                                "    Orchard_ContentItemIndex.ContentType," +
-                                "    Orchard_Document.Id," +
-                                "    Orchard_Document.Content" +
-                                "from Orchard_ContentItemIndex" +
-                                "join Orchard_Document" +
-                                "    on Orchard_ContentItemIndex.DocumentId = Orchard_Document.Id" +
-                                $"where Orchard_ContentItemIndex.ContentType = N'{request.ContentType}'";
+                                "    ContentItemIndex.Id," +
+                                "    ContentItemIndex.ContentItemId," +
+                                "    ContentItemIndex.Latest," +
+                                "    ContentItemIndex.Published," +
+                                "    ContentItemIndex.ContentType," +
+                                "    Document.Id," +
+                                "    Document.Content" +
+                                "from ContentItemIndex" +
+                                "join Document" +
+                                "    on ContentItemIndex.DocumentId = Document.Id" +
+                                $"where ContentItemIndex.ContentType = N'{request.ContentType}'";
         
             var queryResult = await _queryManager.ExecuteQueryAsync(new SqlQuery
             {
                 Name = "GetObjectList",
-                Template = "SELECT * FROM [ContentItemIndex];"
+                Template = queryTemplate
             }, new Dictionary<string, object>());
 
             var contentItems = ((List<JObject>) queryResult).Select(item => item.ToObject<ContentItemIndex>());
