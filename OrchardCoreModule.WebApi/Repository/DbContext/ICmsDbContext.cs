@@ -1,4 +1,4 @@
-namespace OrchardCoreModule.WebApi.Repository
+namespace OrchardCoreModule.WebApi.Repository.DbContext
 {
     internal interface ICmsDbContext
     {
