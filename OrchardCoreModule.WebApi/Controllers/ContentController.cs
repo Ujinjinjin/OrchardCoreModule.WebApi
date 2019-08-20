@@ -26,39 +26,50 @@ namespace OrchardCoreModule.WebApi.Controllers
         }
 
         [Route("api/content/get")]
-        public async Task<ContentItem> GetContentItem(GetContentItemRequest request)
+        public async Task<object> GetContentItem(GetContentItemRequest request)
         {
+            if (string.IsNullOrEmpty(request.Id))
+            {
+                return BadRequest($"Invalid value {nameof(request.Id)}");
+            }
             return await _contentManager.GetAsync(request.Id);
         }
         
         [Route("api/content/list")]
-        public async Task<ContentItemIndex[]> GetContentItemList(GetContentItemListRequest request)
+        public async Task<object> GetContentItemList(GetContentItemListRequest request)
         {
-            var queryTemplate = "select" +
-                                "    ContentItemIndex.Id," +
-                                "    ContentItemIndex.ContentItemId," +
-                                "    ContentItemIndex.Latest," +
-                                "    ContentItemIndex.Published," +
-                                "    ContentItemIndex.ContentType," +
-                                "    Document.Id," +
-                                "    Document.Content" +
-                                "from ContentItemIndex" +
-                                "join Document" +
-                                "    on ContentItemIndex.DocumentId = Document.Id" +
-                                $"where ContentItemIndex.ContentType = N'{request.ContentType}'";
-        
-            var queryResult = await _queryManager.ExecuteQueryAsync(new SqlQuery
+            try
             {
-                Name = "GetObjectList",
-                Template = queryTemplate
-            }, new Dictionary<string, object>());
+                var queryTemplate = "select" +
+                                    "    ContentItemIndex.Id," +
+                                    "    ContentItemIndex.ContentItemId," +
+                                    "    ContentItemIndex.Latest," +
+                                    "    ContentItemIndex.Published," +
+                                    "    ContentItemIndex.ContentType," +
+                                    "    Document.Id," +
+                                    "    Document.Content" +
+                                    "from ContentItemIndex" +
+                                    "join Document" +
+                                    "    on ContentItemIndex.DocumentId = Document.Id" +
+                                    $"where ContentItemIndex.ContentType = N'{request.ContentType}'";
+        
+                var queryResult = await _queryManager.ExecuteQueryAsync(new SqlQuery
+                {
+                    Name = "GetObjectList",
+                    Template = queryTemplate
+                }, new Dictionary<string, object>());
 
-            var contentItems = ((List<JObject>) queryResult).Select(item => item.ToObject<ContentItemIndex>());
+                var contentItems = ((List<JObject>) queryResult).Select(item => item.ToObject<ContentItemIndex>());
             
-            return contentItems.Where(item =>
-                    string.IsNullOrEmpty(request.ContentType) || 
-                    item.ContentType == request.ContentType)
-                .ToArray();
+                return contentItems.Where(item =>
+                        string.IsNullOrEmpty(request.ContentType) || 
+                        item.ContentType == request.ContentType)
+                    .ToArray();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
     }
 }
