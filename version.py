@@ -8,7 +8,7 @@ version_regex = r'(\d+)\.(\d+)\.(\d+)(-\w+)?'
 
 def get_package_info(_target_name: str) -> List[str]:
     """Retrieve package info from nuget"""
-    out = subprocess.Popen(['/usr/bin/mono /opt/hostedtoolcache/NuGet/4.1.0/x64/nuget.exe', 'list', 'id:{0}'.format(_target_name), '-Prerelease'],
+    out = subprocess.Popen(['nuget', 'list', 'id:{0}'.format(_target_name), '-Prerelease'],
                            stdout=subprocess.PIPE,
                            stderr=subprocess.STDOUT)
 
