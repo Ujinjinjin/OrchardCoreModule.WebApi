@@ -20,7 +20,7 @@ def get_next_version(_current_version: str) -> str:
     """Get next version number of package"""
     major, minor, patch, flag = re.findall(version_regex, _current_version)[0]
     patch = int(patch) + 1
-    return f'{major}.{minor}.{patch}{flag}'
+    return '{0}.{1}.{2}{3}'.format(major, minor, patch, flag)
 
 
 if __name__ == '__main__':
