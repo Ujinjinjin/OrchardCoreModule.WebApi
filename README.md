@@ -6,3 +6,5 @@ WebApi module for orchard core cms
 ![Nuget](https://img.shields.io/nuget/v/OrchardCoreModule.WebApi)
 
 ![Nuget](https://img.shields.io/nuget/dt/OrchardCoreModule.WebApi)
+
+![GitHub](https://img.shields.io/github/license/ujinjinjin/OrchardCoreModule.WebApi)
