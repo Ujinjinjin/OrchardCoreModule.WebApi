@@ -46,18 +46,23 @@ namespace OrchardCoreModule.WebApi.Controllers
                                     "    ContentItemIndex.Latest," +
                                     "    ContentItemIndex.Published," +
                                     "    ContentItemIndex.ContentType," +
-                                    "    Document.Id," +
+                                    "    Document.Id as DocumentId," +
                                     "    Document.Content" +
                                     "from ContentItemIndex" +
                                     "join Document" +
                                     "    on ContentItemIndex.DocumentId = Document.Id" +
-                                    $"where ContentItemIndex.ContentType = N'{request.ContentType}'";
+                                    $"where ContentItemIndex.ContentType = '{request.ContentType}'";
         
                 var queryResult = await _queryManager.ExecuteQueryAsync(new SqlQuery
                 {
                     Name = "GetObjectList",
                     Template = queryTemplate
                 }, new Dictionary<string, object>());
+
+                if (((object[]) queryResult).Length == 0)
+                {
+                    return BadRequest();
+                }
 
                 var contentItems = ((List<JObject>) queryResult).Select(item => item.ToObject<ContentItemIndex>());
             
@@ -68,7 +73,7 @@ namespace OrchardCoreModule.WebApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                throw e;
             }
         }
     }
