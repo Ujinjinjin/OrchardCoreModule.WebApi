@@ -1,5 +1,4 @@
-param([String]$ProjectName)
-param([String]$ToolsPath)
+param([String]$ProjectName, [String]$ToolsPath)
 
 $newVersion = (python $ToolsPath/version.py $ProjectName) | Out-String
 
