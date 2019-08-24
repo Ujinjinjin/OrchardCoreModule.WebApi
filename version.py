@@ -27,6 +27,8 @@ if __name__ == '__main__':
     assert len(sys.argv) != 1, 'You must specify only package name in order to get it\'s latest version number'
     target_name = sys.argv[1]
 
+    print(sys.argv)
+
     package_infos = get_package_info(target_name)
 
     for package_info in package_infos:
