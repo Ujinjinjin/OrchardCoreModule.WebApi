@@ -24,7 +24,7 @@ def get_next_version(_current_version: str) -> str:
 
 
 if __name__ == '__main__':
-    assert len(sys.argv) != 1, 'You must specify only package name in order to get it\'s latest version number'
+    assert len(sys.argv) != 1, 'You must specify only package name in order to get it\'s latest version number' + ' '.join(sys.argv)
     target_name = sys.argv[1]
 
     print(sys.argv)
