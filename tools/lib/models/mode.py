@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import List
 
-from tools.lib.consts.argv_names import ArgvNames
-from tools.lib.models.argv import Argv
+from ..consts.argv_names import ArgvNames
+from ..models.argv import Argv
 
 __all__ = ('Mode', 'ModeParser', 'ModeValidator')
 

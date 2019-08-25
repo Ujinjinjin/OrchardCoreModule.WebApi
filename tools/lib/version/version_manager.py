@@ -2,7 +2,7 @@ import re
 import subprocess
 from typing import List
 
-from tools.lib.models.mode import Mode
+from ..models.mode import Mode
 
 __all__ = ('VersionManager',)
 
