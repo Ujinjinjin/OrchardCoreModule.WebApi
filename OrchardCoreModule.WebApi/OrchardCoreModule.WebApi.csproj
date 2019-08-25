@@ -7,6 +7,8 @@
     <PackageId>OrchardCoreModule.WebApi</PackageId>
     <Version>0.0.4-beta</Version>
     <Authors>ujinjinjin</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Ujinjinjin/OrchardCoreModule.WebApi</RepositoryUrl>
     <Company>None</Company>
   </PropertyGroup>
 
