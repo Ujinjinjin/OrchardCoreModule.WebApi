@@ -1,7 +1,7 @@
 # OrchardCoreModule.WebApi
 WebApi module for orchard core cms
 
-[![Build status](https://gallkam.visualstudio.com/OrchardCoreModules/_apis/build/status/Dev.OrchardCoreModules.WebApi)](https://gallkam.visualstudio.com/OrchardCoreModules/_build/latest?definitionId=7)
+[![Build Status](https://dev.azure.com/gallkam/OrchardCoreModules/_apis/build/status/%5BBuild%5D%20Dev.OrchardCoreModules.WebApi?branchName=dev)](https://dev.azure.com/gallkam/OrchardCoreModules/_build/latest?definitionId=11&branchName=dev)
 
 ![Nuget](https://img.shields.io/nuget/v/OrchardCoreModule.WebApi)
 
