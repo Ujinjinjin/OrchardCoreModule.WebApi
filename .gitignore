@@ -6,3 +6,5 @@ obj/
 
 
 *.nupkg
+
+__pycache__/
