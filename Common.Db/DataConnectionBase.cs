@@ -21,5 +21,7 @@ namespace Common.Db
 		{
 			_logger = logger;
 		}
+		
+		
 	}
 }
