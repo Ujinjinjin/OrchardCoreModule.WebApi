@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCoreModule.WebApi.Ab
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{5B1AFE5B-B12B-47E3-9FE6-8F560BEC7EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Db", "Common.Db\Common.Db.csproj", "{73DEFDF1-6FED-46C1-9EAC-4AD8CAF06E0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Db", "Common\Common.Db\Common.Db.csproj", "{C1FDA394-BE60-44E4-8CC2-1AB5EE9F0FFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,12 +22,12 @@ Global
 		{8AE3886F-DF86-4EDB-B076-5D89B53BF2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE3886F-DF86-4EDB-B076-5D89B53BF2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AE3886F-DF86-4EDB-B076-5D89B53BF2F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73DEFDF1-6FED-46C1-9EAC-4AD8CAF06E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73DEFDF1-6FED-46C1-9EAC-4AD8CAF06E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73DEFDF1-6FED-46C1-9EAC-4AD8CAF06E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73DEFDF1-6FED-46C1-9EAC-4AD8CAF06E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1FDA394-BE60-44E4-8CC2-1AB5EE9F0FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1FDA394-BE60-44E4-8CC2-1AB5EE9F0FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1FDA394-BE60-44E4-8CC2-1AB5EE9F0FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1FDA394-BE60-44E4-8CC2-1AB5EE9F0FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{73DEFDF1-6FED-46C1-9EAC-4AD8CAF06E0D} = {5B1AFE5B-B12B-47E3-9FE6-8F560BEC7EA6}
+		{C1FDA394-BE60-44E4-8CC2-1AB5EE9F0FFD} = {5B1AFE5B-B12B-47E3-9FE6-8F560BEC7EA6}
 	EndGlobalSection
 EndGlobal
