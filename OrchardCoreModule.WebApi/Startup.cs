@@ -8,24 +8,24 @@ using OrchardCore.Modules;
 
 namespace OrchardCoreModule.WebApi
 {
-    public class Startup : StartupBase
-    {
-        private readonly IShellConfiguration _configuration;
-        private readonly IHostingEnvironment _hostingEnvironment;
-        
-        public Startup(IShellConfiguration configuration, IHostingEnvironment hostingEnvironment)
-        {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            _hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
-        }
-        
-        public override void ConfigureServices(IServiceCollection services)
-        {
-        }
+	public class Startup : StartupBase
+	{
+		private readonly IShellConfiguration _configuration;
+		private readonly IHostingEnvironment _hostingEnvironment;
+		
+		public Startup(IShellConfiguration configuration, IHostingEnvironment hostingEnvironment)
+		{
+			_configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+			_hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
+		}
+		
+		public override void ConfigureServices(IServiceCollection services)
+		{
+		}
 
-        public override void Configure(IApplicationBuilder builder, IRouteBuilder routes, IServiceProvider serviceProvider)
-        {
-            builder.UseMvc();
-        }
-    }
+		public override void Configure(IApplicationBuilder builder, IRouteBuilder routes, IServiceProvider serviceProvider)
+		{
+			builder.UseMvc();
+		}
+	}
 }

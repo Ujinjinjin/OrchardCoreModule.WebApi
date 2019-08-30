@@ -1,7 +1,7 @@
 namespace OrchardCoreModule.WebApi.Repository
 {
-    internal interface ICmsRepository
-    {
-        
-    }
+	internal interface ICmsRepository
+	{
+		
+	}
 }
