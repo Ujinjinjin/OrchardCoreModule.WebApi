@@ -8,3 +8,7 @@ obj/
 *.nupkg
 
 __pycache__/
+
+*.user
+
+App_Data/

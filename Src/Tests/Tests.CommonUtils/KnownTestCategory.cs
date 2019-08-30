@@ -1,6 +1,6 @@
 ﻿namespace Tests.CommonUtils
 {
-	public class TestCategory
+	public class KnownTestCategory
 	{
 		public const string Dev = "DEV";
 		public const string Patch = "PATCH";
