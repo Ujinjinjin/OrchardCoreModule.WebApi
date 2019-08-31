@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3FBF5581
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{872545EC-089D-4284-8716-30F6136B4DD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUtils.Db", "Src\Common\CommonUtils.Db\CommonUtils.Db.csproj", "{13CDEB3A-88C9-4239-8332-7C119BAFC859}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Db", "Src\Common\Common.Db\Common.Db.csproj", "{13CDEB3A-88C9-4239-8332-7C119BAFC859}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCoreModule.WebApi", "Src\Module\OrchardCoreModule.WebApi\OrchardCoreModule.WebApi.csproj", "{DC5834E2-4E09-43E1-AF11-70D3E42B8D9B}"
 EndProject
@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.CommonUtils", "Src\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Unit", "Src\Tests\Tests.Unit\Tests.Unit.csproj", "{EBC4496C-30A3-46C0-BA7A-40FDADCE681A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUtils.Db.Abstractions", "Src\Common\CommonUtils.Db.Abstractions\CommonUtils.Db.Abstractions.csproj", "{94D0954B-2382-478C-AFEA-C8A4DA49DF70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Db.Abstractions", "Src\Common\Common.Db.Abstractions\Common.Db.Abstractions.csproj", "{94D0954B-2382-478C-AFEA-C8A4DA49DF70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

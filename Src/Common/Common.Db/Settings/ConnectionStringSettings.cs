@@ -1,6 +1,6 @@
 ﻿using LinqToDB.Configuration;
 
-namespace CommonUtils.Db
+namespace Common.Db.Settings
 {
 	internal class ConnectionStringSetting : IConnectionStringSettings
 	{

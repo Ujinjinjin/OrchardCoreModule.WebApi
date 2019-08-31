@@ -10,19 +10,19 @@ using OrchardCore.ContentManagement.Records;
 using OrchardCore.Queries;
 using OrchardCore.Queries.Sql;
 using OrchardCoreModule.WebApi.Abstractions;
+using OrchardCoreModule.WebApi.Repository;
 
 namespace OrchardCoreModule.WebApi.Controllers
 {
-	[AllowAnonymous]
-	public class ContentController : Controller
+	internal class ContentController : Controller
 	{
 		private readonly IContentManager _contentManager;
-		private readonly IQueryManager _queryManager;
+		private readonly ICmsRepository _repository;
 
-		public ContentController(IContentManager contentManager, IQueryManager queryManager)
+		public ContentController(IContentManager contentManager, ICmsRepository repository)
 		{
 			_contentManager = contentManager ?? throw new ArgumentNullException(nameof(contentManager));
-			_queryManager = queryManager ?? throw new ArgumentNullException(nameof(queryManager));
+			_repository = repository ?? throw new ArgumentNullException(nameof(repository));
 		}
 
 		[Route("api/content/get")]
@@ -36,45 +36,9 @@ namespace OrchardCoreModule.WebApi.Controllers
 		}
 		
 		[Route("api/content/list")]
-		public async Task<object> GetContentItemList(GetContentItemListRequest request)
+		public IActionResult GetContentItemList(GetContentItemListRequest request)
 		{
-			try
-			{
-				var queryTemplate = "select" +
-									"	ContentItemIndex.Id," +
-									"	ContentItemIndex.ContentItemId," +
-									"	ContentItemIndex.Latest," +
-									"	ContentItemIndex.Published," +
-									"	ContentItemIndex.ContentType," +
-									"	Document.Id as DocumentId," +
-									"	Document.Content" +
-									"from ContentItemIndex" +
-									"join Document" +
-									"	on ContentItemIndex.DocumentId = Document.Id" +
-									$"where ContentItemIndex.ContentType = '{request.ContentType}'";
-		
-				var queryResult = await _queryManager.ExecuteQueryAsync(new SqlQuery
-				{
-					Name = "GetObjectList",
-					Template = queryTemplate
-				}, new Dictionary<string, object>());
-
-				if (((object[]) queryResult).Length == 0)
-				{
-					return BadRequest();
-				}
-
-				var contentItems = ((List<JObject>) queryResult).Select(item => item.ToObject<ContentItemIndex>());
-			
-				return contentItems.Where(item =>
-						string.IsNullOrEmpty(request.ContentType) || 
-						item.ContentType == request.ContentType)
-					.ToArray();
-			}
-			catch (Exception e)
-			{
-				throw e;
-			}
+			return Ok(_repository.GetStuff());
 		}
 	}
 }

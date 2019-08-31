@@ -2,12 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>OrchardCoreModule.WebApi.Abstractions</RootNamespace>
-        
-        <PackageId>OrchardCoreModule.WebApi.Abstractions</PackageId>
-        <Version>0.0.1</Version>
-        <Authors>ujinjinjin</Authors>
-        <Company>None</Company>
     </PropertyGroup>
 
     <ItemGroup>

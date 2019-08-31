@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using OrchardCoreModule.WebApi.Repository.DbContext;
 
 namespace OrchardCoreModule.WebApi.Repository
@@ -10,6 +11,11 @@ namespace OrchardCoreModule.WebApi.Repository
 		public CmsRepository(ICmsDbContext dbContext)
 		{
 			_dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+		}
+
+		public IList<int> GetStuff()
+		{
+			return _dbContext.GetStuff();
 		}
 	}
 }

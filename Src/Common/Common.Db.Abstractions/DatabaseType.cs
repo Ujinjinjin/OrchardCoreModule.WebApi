@@ -1,7 +1,7 @@
-namespace CommonUtils.Db.Abstractions
+namespace Common.Db.Abstractions
 {
 	/// <summary> Data provider </summary>
-	public enum DataProvider
+	public enum DatabaseType
 	{
 		/// <summary> Sql Server </summary>
 		SqlServer = 0,

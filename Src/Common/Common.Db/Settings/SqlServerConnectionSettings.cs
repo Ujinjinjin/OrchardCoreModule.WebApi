@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LinqToDB.Configuration;
 
-namespace CommonUtils.Db
+namespace Common.Db.Settings
 {
 	internal class SqlServerConnectionSettings : ILinqToDBSettings
 	{
