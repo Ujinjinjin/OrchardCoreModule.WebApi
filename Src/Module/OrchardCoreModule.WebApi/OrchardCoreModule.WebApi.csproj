@@ -25,7 +25,6 @@
     <PackageReference Include="OrchardCore.Navigation.Core" Version="1.0.0-beta3-71077" />
     <PackageReference Include="OrchardCore.Queries" Version="1.0.0-beta3-71077" />
     <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-beta3-71077" />
-    <PackageReference Include="OrchardCoreModule.WebApi.Abstractions" Version="0.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.Db\Common.Db.csproj" />
+    <ProjectReference Include="..\OrchardCoreModule.WebApi.Abstractions\OrchardCoreModule.WebApi.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

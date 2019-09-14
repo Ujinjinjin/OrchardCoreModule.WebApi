@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Common.Db.Abstractions;
-using Common.Db.Settings;
 using LinqToDB.Data;
 using Microsoft.Extensions.Logging;
 
@@ -13,21 +11,11 @@ namespace Common.Db
 	{
 		private readonly ILogger _logger;
 		
-		protected DataConnectionBase(DatabaseType databaseType, string connectionString, ILogger logger)
+		protected DataConnectionBase(string dataProviderName, string connectionString, ILogger logger) 
+			: base(dataProviderName, connectionString)
 		{
+			Console.WriteLine(connectionString);
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
-			
-			switch (databaseType)
-			{
-				case DatabaseType.SqlServer:
-					DefaultSettings = new SqlServerConnectionSettings(connectionString);
-					break;
-				case DatabaseType.Postgres:
-				case DatabaseType.MySql:
-				case DatabaseType.SqLite:
-				default:
-					throw new ArgumentOutOfRangeException(nameof(databaseType), databaseType, null);
-			}
 		}
 		
 		/// <summary> Execute command and return data reader </summary>
@@ -61,7 +49,7 @@ namespace Common.Db
 				}
 				catch (Exception e)
 				{
-					scope.Log("Error");
+					scope.Log($"Error {e}");
 					throw;
 				}
 			}
@@ -112,7 +100,7 @@ namespace Common.Db
 				}
 				catch (Exception e)
 				{
-					scope.Log("Error");
+					scope.Log($"Error {e}");
 					throw;
 				}
 			}

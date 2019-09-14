@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace OrchardCoreModule.WebApi.Repository
 {
-	internal interface ICmsRepository
+	public interface ICmsRepository
 	{
 		IList<int> GetStuff();
 	}

@@ -1,20 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using OrchardCore.ContentManagement;
-using OrchardCore.ContentManagement.Records;
-using OrchardCore.Queries;
-using OrchardCore.Queries.Sql;
 using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Repository;
 
 namespace OrchardCoreModule.WebApi.Controllers
 {
-	internal class ContentController : Controller
+	public class ContentController : Controller
 	{
 		private readonly IContentManager _contentManager;
 		private readonly ICmsRepository _repository;
@@ -32,9 +25,10 @@ namespace OrchardCoreModule.WebApi.Controllers
 			{
 				return BadRequest($"Invalid value {nameof(request.Id)}");
 			}
+
 			return await _contentManager.GetAsync(request.Id);
 		}
-		
+
 		[Route("api/content/list")]
 		public IActionResult GetContentItemList(GetContentItemListRequest request)
 		{
