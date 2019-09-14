@@ -1,7 +1,5 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using OrchardCore.ContentManagement;
 using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Repository;
 
@@ -9,30 +7,27 @@ namespace OrchardCoreModule.WebApi.Controllers
 {
 	public class ContentController : Controller
 	{
-		private readonly IContentManager _contentManager;
 		private readonly ICmsRepository _repository;
 
-		public ContentController(IContentManager contentManager, ICmsRepository repository)
+		public ContentController(ICmsRepository repository)
 		{
-			_contentManager = contentManager ?? throw new ArgumentNullException(nameof(contentManager));
 			_repository = repository ?? throw new ArgumentNullException(nameof(repository));
 		}
 
 		[Route("api/content/get")]
-		public async Task<object> GetContentItem(GetContentItemRequest request)
+		public object GetContentItem(GetContentItemRequest request)
 		{
-			if (string.IsNullOrEmpty(request.Id))
-			{
-				return BadRequest($"Invalid value {nameof(request.Id)}");
-			}
+			_ = request.Id ?? throw new ArgumentNullException(nameof(request.Id));
 
-			return await _contentManager.GetAsync(request.Id);
+			return _repository.GetContentItemById(request.Id);
 		}
 
 		[Route("api/content/list")]
-		public IActionResult GetContentItemList(GetContentItemListRequest request)
+		public object GetContentItemList(GetContentItemListRequest request)
 		{
-			return Ok(_repository.GetStuff());
+			_ = request.ContentType ?? throw new ArgumentNullException(nameof(request.ContentType));
+
+			return _repository.GetContentItemList(request.ContentType, null);
 		}
 	}
 }

@@ -4,7 +4,7 @@ namespace OrchardCoreModule.WebApi.Abstractions
 {
 	/// <summary> Content index item </summary>
 	[DataContract]
-	public class ContentItemIndex<T>
+	public class ContentItemIndex
 	{
 		/// <summary> Content index ID </summary>
 		[DataMember]
@@ -32,6 +32,6 @@ namespace OrchardCoreModule.WebApi.Abstractions
 
 		/// <summary> Content </summary>
 		[DataMember]
-		public T Content { get; set; }
+		public string Content { get; set; }
 	}
 }
