@@ -1,14 +1,13 @@
 using System;
-using Common.Db.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OrchardCore.Environment.Shell.Configuration;
 using OrchardCore.Modules;
+using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Const;
 using OrchardCoreModule.WebApi.Repository;
-using OrchardCoreModule.WebApi.Repository.DbContext;
 
 namespace OrchardCoreModule.WebApi
 {
