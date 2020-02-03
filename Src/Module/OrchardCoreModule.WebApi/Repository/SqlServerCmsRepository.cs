@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Converters;
 using OrchardCoreModule.WebApi.Repository.DbContext;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OrchardCoreModule.WebApi.Repository
 {
@@ -20,11 +19,11 @@ namespace OrchardCoreModule.WebApi.Repository
 			}
 		}
 
-		public ContentItemIndex GetContentItemById(string contentItemId)
+		public ContentItemIndex GetContentItemById(string contentType, string contentItemId)
 		{
 			using (var dbContext = new SqlServerCmsDbContext())
 			{
-				return dbContext.GetContentItemById(contentItemId).ToInterface();
+				return dbContext.GetContentItemById(contentType, contentItemId)?.ToInterface();
 			}
 		}
 	}

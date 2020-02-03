@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Repository.DbClasses;
 
@@ -15,7 +16,7 @@ namespace OrchardCoreModule.WebApi.Converters
 				Published = source.Published,
 				ContentType = source.ContentType,
 				DocumentId = source.DocumentId,
-				Content = source.Content,
+				Content = JObject.Parse(source.Content),
 			};
 		}
 		
@@ -29,7 +30,7 @@ namespace OrchardCoreModule.WebApi.Converters
 				Published = source.Published,
 				ContentType = source.ContentType,
 				DocumentId = source.DocumentId,
-				Content = source.Content,
+				Content = source.Content.ToString(),
 			};
 		}
 	}

@@ -7,8 +7,8 @@ namespace OrchardCoreModule.WebApi.Repository
 	{
 		/// <summary> Get list of content items by filter </summary>
 		IList<ContentItemIndex> GetContentItemList(string contentType, bool? published);
-		
+
 		/// <summary> Get content item by id </summary>
-		ContentItemIndex GetContentItemById(string contentItemId);
+		ContentItemIndex GetContentItemById(string contentType, string contentItemId);
 	}
 }

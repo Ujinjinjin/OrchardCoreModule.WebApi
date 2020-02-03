@@ -9,6 +9,6 @@ namespace OrchardCoreModule.WebApi.Repository.DbContext
 		IList<DbContentItemIndex> GetContentItemList(string contentType, bool? published);
 
 		/// <summary> Get content item by id </summary>
-		DbContentItemIndex GetContentItemById(string contentItemId);
+		DbContentItemIndex GetContentItemById(string contentType, string contentItemId);
 	}
 }

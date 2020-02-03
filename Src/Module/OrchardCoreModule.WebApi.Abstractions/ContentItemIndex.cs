@@ -32,6 +32,6 @@ namespace OrchardCoreModule.WebApi.Abstractions
 
 		/// <summary> Content </summary>
 		[DataMember]
-		public string Content { get; set; }
+		public object Content { get; set; }
 	}
 }

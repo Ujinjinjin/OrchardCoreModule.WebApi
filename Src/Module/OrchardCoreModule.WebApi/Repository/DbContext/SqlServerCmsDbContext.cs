@@ -30,12 +30,15 @@ namespace OrchardCoreModule.WebApi.Repository.DbContext
 			).ToList();
 		}
 
-		public DbContentItemIndex GetContentItemById(string contentItemId)
+		public DbContentItemIndex GetContentItemById(string contentType, string contentItemId)
 		{
 			return Query<DbContentItemIndex>(
 				"cms__get_content_by_id",
+				new DataParameter("p_content_type", contentType),
 				new DataParameter("p_content_item_id", contentItemId)
-			).Single();
+			)
+				.OrderBy(x => x.Published)
+				.LastOrDefault();
 		}
 	}
 }
