@@ -7,14 +7,14 @@ namespace OrchardCoreModule.WebApi.Utils.Database
 	internal class QueryExecutionScope : IDisposable
 	{
 		private readonly Stopwatch _stopwatch;
-		private readonly ILogger _logger;
+		// private readonly ILogger _logger;
 		private readonly string _scopeGuid;
 		
-		public QueryExecutionScope(ILogger logger)
+		public QueryExecutionScope()
 		{
 			_stopwatch = Stopwatch.StartNew();
 			_scopeGuid = Guid.NewGuid().ToString("N");
-			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+			// _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
 			Log("Started");
 		}

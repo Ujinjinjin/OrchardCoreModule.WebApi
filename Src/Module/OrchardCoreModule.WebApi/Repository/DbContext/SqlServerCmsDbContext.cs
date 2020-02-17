@@ -4,8 +4,8 @@ using System.Linq;
 using LinqToDB;
 using LinqToDB.Data;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Debug;
 using OrchardCoreModule.WebApi.Const;
+using OrchardCoreModule.WebApi.Logger;
 using OrchardCoreModule.WebApi.Repository.DbClasses;
 using OrchardCoreModule.WebApi.Utils.Database;
 
@@ -14,7 +14,7 @@ namespace OrchardCoreModule.WebApi.Repository.DbContext
 	/// <inheritdoc cref="ICmsRepository" />
 	internal class SqlServerCmsDbContext : DataConnectionBase, ICmsDbContext
 	{
-		private static readonly ILogger Logger = new DebugLogger(nameof(SqlServerCmsDbContext));
+		private static readonly ILogger Logger = new ConsoleLogger();
 
 		protected internal SqlServerCmsDbContext()
 			: base(ProviderName.SqlServer2017, Environment.GetEnvironmentVariable(EnvironmentVariable.CmsConnectionString), Logger)

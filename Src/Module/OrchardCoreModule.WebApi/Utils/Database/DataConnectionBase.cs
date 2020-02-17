@@ -9,13 +9,13 @@ namespace OrchardCoreModule.WebApi.Utils.Database
 {
 	internal class DataConnectionBase : DataConnection
 	{
-		private readonly ILogger _logger;
+		// private readonly ILogger _logger;
 		
 		protected DataConnectionBase(string dataProviderName, string connectionString, ILogger logger) 
 			: base(dataProviderName, connectionString)
 		{
 			Console.WriteLine(connectionString);
-			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
+			// _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 		
 		/// <summary> Execute command and return data reader </summary>
@@ -38,7 +38,7 @@ namespace OrchardCoreModule.WebApi.Utils.Database
 		/// <summary> Execute command and return data reader </summary>
 		private DataReader ExecuteReader(DbRequest request)
 		{
-			using (var scope = new QueryExecutionScope(_logger))
+			using (var scope = new QueryExecutionScope())
 			{
 				try
 				{
@@ -87,7 +87,7 @@ namespace OrchardCoreModule.WebApi.Utils.Database
 		/// <summary> Execute command and return typed list of objects </summary>
 		private IEnumerable<T> Query<T>(DbRequest request)
 		{
-			using (var scope = new QueryExecutionScope(_logger))
+			using (var scope = new QueryExecutionScope())
 			{
 				try
 				{

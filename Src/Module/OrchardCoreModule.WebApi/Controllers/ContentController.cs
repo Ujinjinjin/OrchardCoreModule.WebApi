@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using OrchardCoreModule.WebApi.Abstractions;
-using OrchardCoreModule.WebApi.Const;
 using OrchardCoreModule.WebApi.Repository;
 using System;
 
@@ -15,52 +14,49 @@ namespace OrchardCoreModule.WebApi.Controllers
 			_repository = repository ?? throw new ArgumentNullException(nameof(repository));
 		}
 
-		[Route("api/content/getstorybyid")]
-		public object GetStoryById(GetContentItemRequest request)
+		[Route("api/content/get")]
+		public object GetContentItemById(GetContentItemRequest request)
 		{
-			_ = request.Id ?? throw new ArgumentNullException(nameof(request.Id));
-
-			var story = _repository.GetContentItemById(ContentType.Story, request.Id);
-
-			if (story == null)
+			try
 			{
-				return NotFound();
+				_ = request.Id ?? throw new ArgumentNullException(nameof(request.Id));
+				_ = request.ContentType ?? throw new ArgumentNullException(nameof(request.ContentType));
+
+				var contentItem = _repository.GetContentItemById(request.ContentType, request.Id);
+
+				if (contentItem == null)
+				{
+					return NotFound();
+				}
+
+				return contentItem;
 			}
-
-			return story;
-		}
-
-		[Route("api/content/getstorylist")]
-		public object GetStoryList()
-		{
-			return _repository.GetContentItemList(ContentType.Story, true);
-		}
-
-		[Route("api/content/getfabyid")]
-		public object GetFaById(GetContentItemRequest request)
-		{
-			_ = request.Id ?? throw new ArgumentNullException(nameof(request.Id));
-
-			var faq = _repository.GetContentItemById(ContentType.FaqQuestion, request.Id);
-
-			if (faq == null)
+			catch (ArgumentNullException e)
 			{
-				return NotFound();
+				return BadRequest($"missing required parameter: {e.ParamName}");
 			}
-
-			return faq;
 		}
 
-		[Route("api/content/getfaqlist")]
-		public object GetFaqList()
+		[Route("api/content/getlist")]
+		public object GetContentItemList(GetContentItemRequest request)
 		{
-			return _repository.GetContentItemList(ContentType.FaqQuestion, true);
-		}
+			try
+			{
+				_ = request.ContentType ?? throw new ArgumentNullException(nameof(request.ContentType));
 
-		[Route("api/content/getfaqsectionlist")]
-		public object GetFaqSectionList()
-		{
-			return _repository.GetContentItemList(ContentType.FaqSection, true);
+				var contentItemList = _repository.GetContentItemList(request.ContentType, true);
+
+				if (contentItemList == null || contentItemList.Count == 0)
+				{
+					return NotFound();
+				}
+
+				return contentItemList;
+			}
+			catch (ArgumentNullException e)
+			{
+				return BadRequest($"missing required parameter: {e.ParamName}");
+			}
 		}
 	}
 }
