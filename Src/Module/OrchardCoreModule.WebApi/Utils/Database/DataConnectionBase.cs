@@ -1,55 +1,107 @@
+using LinqToDB.Data;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using LinqToDB.Data;
-using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace OrchardCoreModule.WebApi.Utils.Database
 {
 	internal class DataConnectionBase : DataConnection
 	{
-		// private readonly ILogger _logger;
+		private readonly ILogger _logger;
 		
-		protected DataConnectionBase(string dataProviderName, string connectionString, ILogger logger) 
-			: base(dataProviderName, connectionString)
+		protected DataConnectionBase(
+			string dataProviderName,
+			string connectionString,
+			ILogger logger
+		) : base(dataProviderName, connectionString)
 		{
-			Console.WriteLine(connectionString);
-			// _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 		
-		/// <summary> Execute command and return data reader </summary>
-		protected DataReader ExecuteReader(string sql, params DataParameter[] parameters)
+		/// <summary> Execute sql returning nothing </summary>
+		protected async Task ExecuteAsync(string sql, params DataParameter[] parameters)
 		{
-			return ExecuteReader(sql, true, parameters);
+			await ExecuteAsync(sql, CommandType.StoredProcedure, true, parameters);
 		}
-
-		/// <summary> Execute command and return data reader </summary>
-		protected DataReader ExecuteReader(string sql, bool logEnabled, params DataParameter[] parameters)
+		
+		/// <summary> Execute sql returning nothing </summary>
+		protected async Task ExecuteSqlAsync(string sql, params DataParameter[] parameters)
 		{
-			return ExecuteReader(new DbRequest(sql)
+			await ExecuteAsync(sql, CommandType.Text, true, parameters);
+		}
+		
+		/// <summary> Execute sql returning nothing </summary>
+		protected async Task ExecuteAsync(string sql, CommandType commandType, bool logEnabled, params DataParameter[] parameters)
+		{
+			await ExecuteAsync(new DbRequest(sql)
 			{
-				CommandType = CommandType.StoredProcedure,
+				CommandType = commandType,
 				Parameters = parameters,
 				LogLevel = logEnabled ? LogLevel.Debug : LogLevel.None,
 			});
 		}
 
-		/// <summary> Execute command and return data reader </summary>
-		private DataReader ExecuteReader(DbRequest request)
+		/// <summary> Execute sql returning nothing </summary>
+		protected async Task ExecuteAsync(DbRequest request)
 		{
-			using (var scope = new QueryExecutionScope())
+			using (var scope = new QueryExecutionScope(_logger))
 			{
 				try
 				{
 					Command?.Parameters.Clear();
 					CommandTimeout = request.CommandTimeout;
 				
-					return CreateCommand(request).ExecuteReader();
+					await CreateCommand(request).ExecuteAsync();
 				}
-				catch (Exception e)
+				catch (Exception exception)
 				{
-					scope.Log($"Error {e}");
+					scope.Log(LogLevel.Error, "DataConnectionBase:Error;", exception);
+					throw;
+				}
+			}
+		}
+		
+		/// <summary> Execute command and return data reader </summary>
+		protected async Task<DataReaderAsync> ExecuteReaderAsync(string sql, params DataParameter[] parameters)
+		{
+			return await ExecuteReaderAsync(sql, CommandType.StoredProcedure, true, parameters);
+		}
+		
+		/// <summary> Execute command and return data reader </summary>
+		protected async Task<DataReaderAsync> ExecuteReaderSqlAsync(string sql, params DataParameter[] parameters)
+		{
+			return await ExecuteReaderAsync(sql, CommandType.Text, true, parameters);
+		}
+
+		/// <summary> Execute command and return data reader </summary>
+		protected async Task<DataReaderAsync> ExecuteReaderAsync(string sql, CommandType commandType, bool logEnabled, params DataParameter[] parameters)
+		{
+			return await ExecuteReaderAsync(new DbRequest(sql)
+			{
+				CommandType = commandType,
+				Parameters = parameters,
+				LogLevel = logEnabled ? LogLevel.Debug : LogLevel.None,
+			});
+		}
+
+		/// <summary> Execute command and return data reader </summary>
+		private async Task<DataReaderAsync> ExecuteReaderAsync(DbRequest request)
+		{
+			using (var scope = new QueryExecutionScope(_logger))
+			{
+				try
+				{
+					Command?.Parameters.Clear();
+					CommandTimeout = request.CommandTimeout;
+				
+					return await CreateCommand(request).ExecuteReaderAsync();
+				}
+				catch (Exception exception)
+				{
+					scope.Log(LogLevel.Error, "DataConnectionBase:Error;", exception);
 					throw;
 				}
 			}
@@ -59,6 +111,12 @@ namespace OrchardCoreModule.WebApi.Utils.Database
 		protected IEnumerable<T> Query<T>(string sql, params DataParameter[] parameters)
 		{
 			return Query<T>(sql, CommandType.StoredProcedure, parameters);
+		}
+		
+		/// <summary> Execute command and return typed list of objects </summary>
+		protected Task<IEnumerable<T>> QueryAsync<T>(string sql, params DataParameter[] parameters)
+		{
+			return Task.FromResult(Query<T>(sql, parameters));
 		}
 
 		/// <summary> Execute command and return typed list of objects </summary>
@@ -87,7 +145,7 @@ namespace OrchardCoreModule.WebApi.Utils.Database
 		/// <summary> Execute command and return typed list of objects </summary>
 		private IEnumerable<T> Query<T>(DbRequest request)
 		{
-			using (var scope = new QueryExecutionScope())
+			using (var scope = new QueryExecutionScope(_logger))
 			{
 				try
 				{
@@ -98,9 +156,9 @@ namespace OrchardCoreModule.WebApi.Utils.Database
 
 					return command.Query<T>();
 				}
-				catch (Exception e)
+				catch (Exception exception)
 				{
-					scope.Log($"Error {e}");
+					scope.Log(LogLevel.Error, "DataConnectionBase:Error;", exception);
 					throw;
 				}
 			}

@@ -6,6 +6,6 @@ namespace OrchardCoreModule.WebApi.Const
 	internal class EnvironmentVariable
 	{
 		public const string CmsConnectionString = "CMS_CONNECTION_STRING";
-		public const string DatabaseType = "DATABASE_TYPE";
+		public const string ProviderName = "DATABASE_PROVIDER_NAME";
 	}
 }

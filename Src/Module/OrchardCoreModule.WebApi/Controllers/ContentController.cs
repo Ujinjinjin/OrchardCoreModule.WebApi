@@ -1,28 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Repository;
 using System;
+using System.Threading.Tasks;
 
 namespace OrchardCoreModule.WebApi.Controllers
 {
 	public class ContentController : Controller
 	{
 		private readonly ICmsRepository _repository;
+		private readonly ILogger _logger;
 
-		public ContentController(ICmsRepository repository)
+		public ContentController(ICmsRepository repository, ILogger logger)
 		{
 			_repository = repository ?? throw new ArgumentNullException(nameof(repository));
+			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
 		[Route("api/content/get")]
-		public object GetContentItemById(GetContentItemRequest request)
+		public async Task<object> GetContentItemByIdAsync(GetContentItemRequest request)
 		{
 			try
 			{
 				_ = request.Id ?? throw new ArgumentNullException(nameof(request.Id));
 				_ = request.ContentType ?? throw new ArgumentNullException(nameof(request.ContentType));
 
-				var contentItem = _repository.GetContentItemById(request.ContentType, request.Id);
+				var contentItem = await _repository.GetContentItemByIdAsync<object>(request.ContentType, request.Id, request.Published);
 
 				if (contentItem == null)
 				{
@@ -31,20 +35,21 @@ namespace OrchardCoreModule.WebApi.Controllers
 
 				return contentItem;
 			}
-			catch (ArgumentNullException e)
+			catch (ArgumentNullException exception)
 			{
-				return BadRequest($"missing required parameter: {e.ParamName}");
+				_logger.LogError($"ContentController:Error; {exception.Message}");
+				return BadRequest($"missing required parameter: {exception.ParamName}");
 			}
 		}
 
 		[Route("api/content/getlist")]
-		public object GetContentItemList(GetContentItemRequest request)
+		public async Task<object> GetContentItemListAsync(GetContentItemListRequest request)
 		{
 			try
 			{
 				_ = request.ContentType ?? throw new ArgumentNullException(nameof(request.ContentType));
 
-				var contentItemList = _repository.GetContentItemList(request.ContentType, true);
+				var contentItemList = await _repository.GetContentItemListAsync<object>(request.ContentType, request.DateFrom, request.Published, request.IsDeleted);
 
 				if (contentItemList == null || contentItemList.Count == 0)
 				{
@@ -53,9 +58,10 @@ namespace OrchardCoreModule.WebApi.Controllers
 
 				return contentItemList;
 			}
-			catch (ArgumentNullException e)
+			catch (ArgumentNullException exception)
 			{
-				return BadRequest($"missing required parameter: {e.ParamName}");
+				_logger.LogError($"ContentController:Error; {exception.Message}");
+				return BadRequest($"missing required parameter: {exception.ParamName}");
 			}
 		}
 	}

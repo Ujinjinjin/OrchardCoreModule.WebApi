@@ -24,5 +24,8 @@ namespace OrchardCoreModule.WebApi.Repository.DbClasses
 		
 		[Column("Content")]
 		public string Content { get; set; }
+		
+		[Column("IsDeleted")]
+		public bool IsDeleted { get; set; }
 	}
 }

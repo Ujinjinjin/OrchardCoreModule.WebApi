@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Repository.DbClasses;
 
@@ -6,9 +6,14 @@ namespace OrchardCoreModule.WebApi.Converters
 {
 	internal static class ContentItemIndexConverter
 	{
-		public static ContentItemIndex ToInterface(this DbContentItemIndex source)
+		public static ContentItemIndex<T> ToInterface<T>(this DbContentItemIndex source)
 		{
-			return new ContentItemIndex
+			if (source == null)
+			{
+				return null;
+			}
+			
+			return new ContentItemIndex<T>
 			{
 				Id = source.Id,
 				ContentItemId = source.ContentItemId,
@@ -16,21 +21,7 @@ namespace OrchardCoreModule.WebApi.Converters
 				Published = source.Published,
 				ContentType = source.ContentType,
 				DocumentId = source.DocumentId,
-				Content = JObject.Parse(source.Content),
-			};
-		}
-		
-		public static DbContentItemIndex ToDb(this ContentItemIndex source)
-		{
-			return new DbContentItemIndex
-			{
-				Id = source.Id,
-				ContentItemId = source.ContentItemId,
-				Latest = source.Latest,
-				Published = source.Published,
-				ContentType = source.ContentType,
-				DocumentId = source.DocumentId,
-				Content = source.Content.ToString(),
+				Content = JsonConvert.DeserializeObject<T>(source.Content),
 			};
 		}
 	}

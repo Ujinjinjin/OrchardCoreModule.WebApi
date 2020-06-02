@@ -12,5 +12,9 @@ namespace OrchardCoreModule.WebApi.Abstractions
 		/// <summary> Content type </summary>
 		[DataMember]
 		public string ContentType { get; set; }
+
+		/// <summary> Publishing flag </summary>
+		[DataMember]
+		public bool? Published { get; set; }
 	}
 }

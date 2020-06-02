@@ -1,23 +1,47 @@
 using Microsoft.Extensions.Logging;
+using OrchardCoreModule.WebApi.Helpers;
 using System;
 
 namespace OrchardCoreModule.WebApi.Logger
 {
-	public class ConsoleLogger : ILogger
+	internal class ConsoleLogger : ILogger
 	{
-		public IDisposable BeginScope<TState>(TState state)
+		public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
 		{
-			throw new NotImplementedException();
+			if (!IsEnabled(logLevel))
+			{
+				return;
+			}
+
+			if (formatter == null)
+			{
+				throw new ArgumentNullException(nameof(formatter));
+			}
+
+			var message = formatter(state, exception);
+			if (exception != null)
+			{
+				message += Environment.NewLine + Environment.NewLine + exception;
+			}
+
+			if (string.IsNullOrEmpty(message))
+			{
+				return;
+			}
+
+			message = $"{logLevel} | {DateTime.UtcNow} | {message}";
+			
+			Console.WriteLine(message);
 		}
 
 		public bool IsEnabled(LogLevel logLevel)
 		{
-			throw new NotImplementedException();
+			return logLevel != LogLevel.None;
 		}
 
-		public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+		public IDisposable BeginScope<TState>(TState state)
 		{
-			throw new NotImplementedException();
+			return DisposableHelper.Empty;
 		}
 	}
 }

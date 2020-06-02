@@ -1,14 +1,21 @@
-using System.Collections.Generic;
 using OrchardCoreModule.WebApi.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OrchardCoreModule.WebApi.Repository
 {
 	public interface ICmsRepository
 	{
 		/// <summary> Get list of content items by filter </summary>
-		IList<ContentItemIndex> GetContentItemList(string contentType, bool? published);
+		Task<IList<ContentItemIndex<T>>> GetContentItemListAsync<T>(
+			string contentType,
+			DateTime? dateFrom,
+			bool? published,
+			bool? isDeleted
+		);
 
 		/// <summary> Get content item by id </summary>
-		ContentItemIndex GetContentItemById(string contentType, string contentItemId);
+		Task<ContentItemIndex<T>> GetContentItemByIdAsync<T>(string contentType, string contentItemId, bool? published);
 	}
 }
