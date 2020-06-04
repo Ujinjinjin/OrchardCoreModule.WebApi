@@ -1,6 +1,7 @@
 ﻿create or alter procedure cms__get_content_by_id(
 	@p_content_type varchar(255),
-	@p_content_item_id varchar(26)
+	@p_content_item_id varchar(26),
+	@p_published bit
 ) as begin
 	set nocount on;
 	--------------------------------
