@@ -18,7 +18,7 @@ There are 5 major steps to add this module to your OrchardCore CMS instance:
 4. Apply procedures scripts from Database folder
 5. Enable WebApi module in OrchardCore CMS settings
 
-For more information on each of the steps visit projects wiki
+For more information on each of the steps visit projects [wiki](https://github.com/Ujinjinjin/OrchardCoreModule.WebApi/wiki/How-to-configure-OrchardCoreModule.Api)
 
 # Supported DB providers
 
