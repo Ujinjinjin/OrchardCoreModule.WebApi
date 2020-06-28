@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using OrchardCoreModule.WebApi.Abstractions;
 using OrchardCoreModule.WebApi.Repository;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OrchardCoreModule.WebApi.Controllers
@@ -20,7 +21,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 
 		[HttpGet]
 		[Route("api/content/get")]
-		public async Task<object> GetContentItemByIdAsync(GetContentItemRequest request)
+		public async Task<ActionResult<object>> GetContentItemByIdAsync(GetContentItemRequest request)
 		{
 			try
 			{
@@ -34,7 +35,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 					return NotFound();
 				}
 
-				return contentItem;
+				return Ok(contentItem);
 			}
 			catch (ArgumentNullException exception)
 			{
@@ -45,7 +46,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 
 		[HttpGet]
 		[Route("api/content/getlist")]
-		public async Task<object> GetContentItemListAsync(GetContentItemListRequest request)
+		public async Task<ActionResult<IList<object>>> GetContentItemListAsync(GetContentItemListRequest request)
 		{
 			try
 			{
@@ -58,7 +59,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 					return NotFound();
 				}
 
-				return contentItemList;
+				return Ok(contentItemList);
 			}
 			catch (ArgumentNullException exception)
 			{
