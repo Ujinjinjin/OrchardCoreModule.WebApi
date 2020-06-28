@@ -8,7 +8,7 @@ Custom made web api module for OrchardCore.Cms gnerally used as synchronization 
 
 At the moment, this project only tested manually by the team of two QA's and cutting edge bugs not found, but automated tests are on their way.
 
-# How to use
+# How to configure
 
 There are 5 major steps to add this module to your OrchardCore CMS instance:
 
