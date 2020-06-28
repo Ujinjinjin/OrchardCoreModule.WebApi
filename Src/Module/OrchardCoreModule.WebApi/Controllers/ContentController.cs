@@ -21,7 +21,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 
 		[HttpGet]
 		[Route("api/content/get")]
-		public async Task<ActionResult<object>> GetContentItemByIdAsync(GetContentItemRequest request)
+		public async Task<ActionResult<ContentItemIndex<object>>> GetContentItemByIdAsync(GetContentItemRequest request)
 		{
 			try
 			{
@@ -46,7 +46,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 
 		[HttpGet]
 		[Route("api/content/getlist")]
-		public async Task<ActionResult<IList<object>>> GetContentItemListAsync(GetContentItemListRequest request)
+		public async Task<ActionResult<IList<ContentItemIndex<object>>>> GetContentItemListAsync(GetContentItemListRequest request)
 		{
 			try
 			{
