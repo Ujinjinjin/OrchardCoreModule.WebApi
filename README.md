@@ -4,7 +4,7 @@ Custom made web api module for OrchardCore.Cms gnerally used as synchronization 
 
 # Test coverage
 
-At the moment, this project only tested manually by the team of two QA's and cutting edge bugs weren't foun, but automated tests are on their way.
+At the moment, this project only tested manually by the team of two QA's and cutting edge bugs not found, but automated tests are on their way.
 
 # How to use
 
