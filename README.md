@@ -29,7 +29,7 @@ OrchardCoreModule.WebApi currently supports only following DB providers:
 
 # Implemented API methods
 
-List of implemented API methods can be found on this wiki page.
+List of implemented API methods can be found on [this wiki page](https://github.com/Ujinjinjin/OrchardCoreModule.WebApi/wiki/Implemented-API).
 
 # Advanced synchronization options
 
