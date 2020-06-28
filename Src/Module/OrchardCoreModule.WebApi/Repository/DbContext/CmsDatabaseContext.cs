@@ -24,7 +24,8 @@ namespace OrchardCoreModule.WebApi.Repository.DbContext
 			string contentType,
 			DateTime? dateFrom,
 			bool? published,
-			bool? isDeleted)
+			bool? isDeleted
+		)
 		{
 			var result = await QueryAsync<DbContentItemIndex>(
 				"cms__get_content_list",
@@ -39,7 +40,8 @@ namespace OrchardCoreModule.WebApi.Repository.DbContext
 		public async Task<DbContentItemIndex> GetContentItemByIdAsync(
 			string contentType,
 			string contentItemId,
-			bool? published)
+			bool? published
+		)
 		{
 			var result = await QueryAsync<DbContentItemIndex>(
 				"cms__get_content_by_id",

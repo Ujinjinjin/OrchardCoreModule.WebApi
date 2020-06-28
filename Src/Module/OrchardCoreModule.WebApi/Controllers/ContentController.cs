@@ -18,6 +18,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
+		[HttpGet]
 		[Route("api/content/get")]
 		public async Task<object> GetContentItemByIdAsync(GetContentItemRequest request)
 		{
@@ -42,6 +43,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 			}
 		}
 
+		[HttpGet]
 		[Route("api/content/getlist")]
 		public async Task<object> GetContentItemListAsync(GetContentItemListRequest request)
 		{

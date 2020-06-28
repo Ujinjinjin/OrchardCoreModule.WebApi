@@ -8,7 +8,6 @@ using OrchardCoreModule.WebApi.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace OrchardCoreModule.WebApi.Controllers
@@ -24,6 +23,7 @@ namespace OrchardCoreModule.WebApi.Controllers
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
+		[HttpGet]
 		[Route("api/sync/getcallbacklist")]
 		public async Task<ActionResult<IList<CallbackData>>> GetCallbackListAsync(GetCallbackListRequest request)
 		{
