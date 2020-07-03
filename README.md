@@ -33,4 +33,6 @@ List of implemented API methods can be found on [this wiki page](https://github.
 
 # Advanced synchronization options
 
-To be written
+There are many way to synchronize content between CMS ad your back-end, but we'll discuss two of them. It's important to note, that synchronization models described below are both one-directional, meaning that you'll manage (add, edit or delete) content in OrchardCore CMS and those changes will be synchronized to your back-end service, but no manual changes on you back-end service will appear in CMS.
+
+Detailed description of suggested synchronization models can be found on [this wiki page](https://github.com/Ujinjinjin/OrchardCoreModule.WebApi/wiki/Synchronization-models).
