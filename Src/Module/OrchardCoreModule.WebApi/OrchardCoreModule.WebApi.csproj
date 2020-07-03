@@ -7,8 +7,10 @@
     <PackageId>OrchardCoreModule.WebApi</PackageId>
     <Version>0.0.4-beta</Version>
     <Authors>ujinjinjin</Authors>
+    <Description>Custom made web api module for OrchardCore.Cms gnerally used as synchronization entry point. E.g. you have main back-end service and CMS (in this case OrchardCore CMS) used by your content managers, and let's say you need to retrieve content from CMS to show it to users or cache in youe main database, this is where OrchardCoreModule.WebApi can help you.</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/Ujinjinjin/OrchardCoreModule.WebApi</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/Ujinjinjin/OrchardCoreModule.WebApi/blob/dev/LICENSE</PackageLicenseUrl>
     <Company>None</Company>
   </PropertyGroup>
 
