@@ -6,7 +6,7 @@ Custom made web api module for OrchardCore.Cms gnerally used as synchronization 
 
 # Download at:
 
-- [Nuget](https://www.nuget.org/packages/OrchardCoreModule.WebApi/)
+- [nuget.org](https://www.nuget.org/packages/OrchardCoreModule.WebApi/)
 
 # Test coverage
 
