@@ -4,6 +4,10 @@ Custom made web api module for OrchardCore.Cms gnerally used as synchronization 
 
 [![Build Status](https://dev.azure.com/gallkam/OrchardCoreModules/_apis/build/status/%5BBuild%5D%20Dev.OrchardCoreModules.WebApi?branchName=dev)](https://dev.azure.com/gallkam/OrchardCoreModules/_build/latest?definitionId=11&branchName=dev) ![Nuget](https://img.shields.io/nuget/v/OrchardCoreModule.WebApi) ![Nuget](https://img.shields.io/nuget/dt/OrchardCoreModule.WebApi) ![GitHub](https://img.shields.io/github/license/ujinjinjin/OrchardCoreModule.WebApi)
 
+# Download at:
+
+- [Nuget](https://www.nuget.org/packages/OrchardCoreModule.WebApi/)
+
 # Test coverage
 
 At the moment, this project only tested manually by the team of two QA's and cutting edge bugs not found, but automated tests are on their way.
